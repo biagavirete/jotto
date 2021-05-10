@@ -1,11 +1,8 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import EnzymeAdapter from '@wojtekmaj/enzyme-adapter-react-17';
+import { shallow } from 'enzyme';
 
 import Input from './Input';
 import { checkProps, findByTestAttr } from './test/testUtils';
-
-Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 // mock entire module for destructuring
 /*
