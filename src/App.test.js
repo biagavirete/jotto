@@ -1,5 +1,7 @@
 import { mount } from 'enzyme';
-import { findByTestAttr } from './test/testUtils';
+import { Provider } from 'react-redux';
+
+import { findByTestAttr, storeFactory } from './test/testUtils';
 import App from './App';
 
 jest.mock('./actions');
@@ -7,7 +9,8 @@ jest.mock('./actions');
 import { getSecretWord as mockGetSecretWord } from './actions';
 
 const setup = () => {
-  return mount(<App />);
+  const store = storeFactory();
+  return mount(<Provider store={store}><App /></Provider>);
 }
 
 test('renders without error', () => {
@@ -22,7 +25,7 @@ describe('get secret word', () => {
   })
   test('getSecretWord on app mount', () => {
     const wrapper = setup();
-    expect(mockGetSecretWord).toHaveBeenCalledTimes(1);
+    expect(wrapper).toHaveBeenCalledTimes(1);
   });
   test('getSecretWord does not run on app update', () => {
     const wrapper = setup();
