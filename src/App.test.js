@@ -5,6 +5,7 @@ import { findByTestAttr, storeFactory } from '../test/testUtils';
 import App from './App';
 
 jest.mock('./actions');
+
 // eslint-disable-next-line import/first
 import { getSecretWord as mockGetSecretWord } from './actions';
 

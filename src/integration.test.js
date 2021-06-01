@@ -30,7 +30,7 @@ describe('guessWord action dispatcher', () => {
         secretWord,
         success: true,
         guessedWords: [{
-          guessWord: secretWord,
+          guessedWord: secretWord,
           letterMatchCount: 5,
         }],
       };

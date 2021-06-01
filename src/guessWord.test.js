@@ -6,16 +6,17 @@ import { findByTestAttr, storeFactory } from '../test/testUtils';
 
 import App from './App';
 
+jest.mock('./actions');
+
 const setup = (initialState = {}) => {
-  const store = storeFactory(initialState)
+  const store = storeFactory(initialState);
   const wrapper = mount(
     <Provider store={store}>
       <App />
     </Provider>
   );
-  const inputBox = findByTestAttr(wrapper, 'input-box');
 
-  
+  const inputBox = findByTestAttr(wrapper, 'input-box');  
   inputBox.simulate('change', { target: { value: 'train' } });
 
   const submitButton = findByTestAttr(wrapper, 'submit-button');
