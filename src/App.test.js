@@ -1,7 +1,7 @@
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 
-import { findByTestAttr, storeFactory } from './test/testUtils';
+import { findByTestAttr, storeFactory } from '../test/testUtils';
 import App from './App';
 
 jest.mock('./actions');
@@ -10,7 +10,11 @@ import { getSecretWord as mockGetSecretWord } from './actions';
 
 const setup = () => {
   const store = storeFactory();
-  return mount(<Provider store={store}><App /></Provider>);
+  return mount(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
 }
 
 test('renders without error', () => {

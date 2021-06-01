@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import Input from './Input';
-import { checkProps, findByTestAttr, storeFactory } from './test/testUtils';
+import { checkProps, findByTestAttr, storeFactory } from '../test/testUtils';
 import { Provider } from 'react-redux';
 
 // mock entire module for destructuring
