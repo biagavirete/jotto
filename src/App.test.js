@@ -1,14 +1,18 @@
-import { mount } from 'enzyme';
-import { Provider } from 'react-redux';
+import React from "react";
+import { mount } from "enzyme";
+import { Provider } from "react-redux";
 
-import { findByTestAttr, storeFactory } from '../test/testUtils';
-import App from './App';
+import { findByTestAttr, storeFactory } from "../test/testUtils";
+import App from "./App";
 
-jest.mock('./actions');
-
+jest.mock("./actions");
 // eslint-disable-next-line import/first
-import { getSecretWord as mockGetSecretWord } from './actions';
+import { getSecretWord as mockGetSecretWord } from "./actions";
 
+/**
+ * Setup function for App component
+ * @returns {Wrapper}
+ */
 const setup = () => {
   const store = storeFactory();
   return mount(
@@ -16,23 +20,23 @@ const setup = () => {
       <App />
     </Provider>
   );
-}
+};
 
-test('renders without error', () => {
+test("renders without error", () => {
   const wrapper = setup();
-  const appComponent = findByTestAttr(wrapper, 'component-app');
+  const appComponent = findByTestAttr(wrapper, "component-app");
   expect(appComponent).toHaveLength(1);
 });
 
-describe('get secret word', () => {
+describe("get secret word", () => {
   beforeEach(() => {
     mockGetSecretWord.mockClear();
-  })
-  test('getSecretWord on app mount', () => {
-    const wrapper = setup();
-    expect(wrapper).toHaveBeenCalledTimes(1);
   });
-  test('getSecretWord does not run on app update', () => {
+  test("getSecretWord runs on app mount", () => {
+    setup();
+    expect(mockGetSecretWord).toHaveBeenCalledTimes(1);
+  });
+  test("getSecretWord does not run on app update", () => {
     const wrapper = setup();
     mockGetSecretWord.mockClear();
 
@@ -40,6 +44,4 @@ describe('get secret word', () => {
 
     expect(mockGetSecretWord).toHaveBeenCalledTimes(0);
   });
-})
-
-
+});
